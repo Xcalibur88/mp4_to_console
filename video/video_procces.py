@@ -4,7 +4,7 @@ from image import image_procces
 from main import SAVE_DIRECTORY
 
 
-def video_to_ascii(video_file, save_file, fps_out=5, max_frames=100000):
+def video_to_ascii(video_file, save_file, width=39, height=95, fps_out=5, max_frames=100000):
     vidcap = cv.VideoCapture(video_file)
     assert vidcap.isOpened()
     
@@ -12,7 +12,7 @@ def video_to_ascii(video_file, save_file, fps_out=5, max_frames=100000):
     index_in = -1
     index_out = -1
     while True:
-        if index_out >= max_frames: break
+        if max_frames > 0 and index_out >= max_frames: break
 
         success = vidcap.grab()
         if not success: break
@@ -23,7 +23,7 @@ def video_to_ascii(video_file, save_file, fps_out=5, max_frames=100000):
             success, frame = vidcap.retrieve()
             if not success: break
 
-            downscaled_frame = image_procces.resize_with_padding(frame, 39, 95) # Downscale to fit console
+            downscaled_frame = image_procces.resize_with_padding(frame, width, height) # Downscale to fit console
             binary_frame = image_procces.to_silhouette(downscaled_frame) # Convert to black and white silhouette
             ascii = image_procces.image_to_ascii(binary_frame) # Convert frame to ascii
             write_to_file(ascii, save_file) # Write ascii to save file

@@ -17,9 +17,9 @@ def setup():
         print(err)
 
 def main_menu():
-    options = {'0 - Play video': pre_processed,
-               '1 - Process new video': proccess_new,
-               '2 - Clean up run data': clean_up,
+    options = {'0 - Play Video': pre_processed,
+               '1 - Process New Video': proccess_new,
+               '2 - Clean Up Run Data': clean_up,
                '3 - Exit': None
               }
     
@@ -48,8 +48,11 @@ def pre_processed():
     video_procces.play_ascii(file)
 
 def proccess_new():
-    fps = prompt_input('Frames per second: ', int, lambda x: x > 0 and x <= 60)
     vfile = prompt_input('Video file: ', str, lambda f: f.endswith('.mp4') and os.path.exists(f), 'Invalid video file!')
+    width = prompt_input('Width: ', int, lambda x: x > 0 and x < 1000)
+    height = prompt_input('Height: ', int, lambda x: x > 0 and x < 1000)
+    fps = prompt_input('Frames per second: ', int, lambda x: x > 0 and x <= 60)
+    max_frames = prompt_input('Max Frames (-1 for no limit): ', int)
 
     save_file = SAVE_DIRECTORY + f"ascii_frames_{vfile.split('.')[0]}.txt"
     if os.path.exists(save_file):
@@ -58,7 +61,7 @@ def proccess_new():
     with open(save_file, 'a') as afile:
         afile.write(f'fps.{fps}')
 
-    video_procces.video_to_ascii(vfile, save_file, fps, 1000)
+    video_procces.video_to_ascii(vfile, save_file, width, height, fps, max_frames)
 
 def clean_up():
     deleted = 0
