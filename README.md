@@ -25,9 +25,7 @@ Upon launching, you'll be presented with a menu with the following options:
 #### Process New Video:
 - Option **1** will allow you to create a new ASCII file for playback
 - It will first prompt for the path to the video file. The file must be in `.mp4` format and exist at the specified path.
-- Next you will need to specify a width and height. This could require some trial and error to find the best option for your specifc screen size and video.
-> [!TIP]
-> Start with a low resulotion and work you way up to find your screens max
+- Next you will need to specify a width and height. This could require some trial and error to find the best option for your specifc screen size and video. Start with a low resulotion and work you way up to find your screens max
 - You will need to enter the desired frames per second (FPS) for the ASCII video (must be between 1 and 60).
 > [!TIP]
 > You'll see the best results with a frame rate between 10 and 25
