@@ -25,10 +25,10 @@ Upon launching, you'll be presented with a menu with the following options:
 #### Process New Video:
 - Option **1** will allow you to create a new ASCII file for playback
 - It will first prompt for the path to the video file. The file must be in `.mp4` format and exist at the specified path.
-- Next you will need to specify a width and height. This could require some trial and error to find the best option for your specifc screen size and video. Start with a low resulotion and work you way up to find your screens max
+- Next you will need to specify a width and height. This could require some trial and error to find the best option for your specifc screen size and video. Keep in mind you can increase and decrease the zoom level in terminal with `ctrl+=` or `ctrl+-`. Disabling line wrapping is also recommended.
 - You will need to enter the desired frames per second (FPS) for the ASCII video (must be between 1 and 60).
 > [!TIP]
-> You'll see the best results with a frame rate between 10 and 25
+> A higher the frame rate will pair best with a lower resolution.
 - Specify a frame limit next. Only proccesing a few hundered frames, instead of a whole video, can be a great for testing. If you want to process the whole video, simply enter a negative number.
 - The application will then generate an ASCII file in the `run_data/` directory based on your settings. Be patient, depending on the length and frame rate of the video it could take upwords of a minute to process.
 
@@ -46,3 +46,14 @@ The projects contains a number of tests to verify the functionality of image pro
 Please use vscode's integrated test identification and handling for running tests. Manually interactions using pytest to run the files will fail.
 > [!NOTE]
 > The tests rely on a number of test images and files. Given significant updates to the code, they will need updated to reflect said changes.
+
+## Sources
+Many Google searches and ChatGPT prompts went into the making of this, but I'll summarize the key points.
+
+### Personal
+The key to this project was OpenCV: an image and video proccessing library for python. With it I was able to splice the video into frames, and isolate shilloetes to display to the console. The actual image to ascii function was in house. I learned about the difference between JPEGs PNGs, and how to manage multiple color channels within an image, be it three or two. Beyond that I did my best to make the application user friendly and robust. For practicul use, this would be converted to a library of sorts for other programs to use.
+
+### Links
+1. https://pypi.org/project/opencv-python/
+2. https://stackoverflow.com/
+3. https://docs.python.org/3/

@@ -23,15 +23,15 @@ def main_menu():
                '3 - Exit': None
               }
     
-    for op in options:
-        print(op)
+    for opt in options:
+        print(opt)
     option = prompt_input('> ', int, lambda x: x > -1 and x < len(options))
 
-    for k, v in options.items():
+    for k, opt in options.items():
         if k.startswith(str(option)):
-            if v is None:
+            if opt is None:
                 return
-            v()
+            opt()
             print()
             main_menu()
 
@@ -48,20 +48,20 @@ def pre_processed():
     video_procces.play_ascii(file)
 
 def proccess_new():
-    vfile = prompt_input('Video file: ', str, lambda f: f.endswith('.mp4') and os.path.exists(f), 'Invalid video file!')
+    video_file = prompt_input('Video file: ', str, lambda f: f.endswith('.mp4') and os.path.exists(f), 'Invalid video file!')
     width = prompt_input('Width: ', int, lambda x: x > 0 and x < 1000)
     height = prompt_input('Height: ', int, lambda x: x > 0 and x < 1000)
     fps = prompt_input('Frames per second: ', int, lambda x: x > 0 and x <= 60)
     max_frames = prompt_input('Max Frames (-1 for no limit): ', int)
 
-    save_file = SAVE_DIRECTORY + f"ascii_frames_{vfile.split('.')[0]}.txt"
+    save_file = SAVE_DIRECTORY + f"ascii_frames_{video_file.split('.')[0]}.txt"
     if os.path.exists(save_file):
         os.remove(save_file)
 
     with open(save_file, 'a') as afile:
         afile.write(f'fps.{fps}')
 
-    video_procces.video_to_ascii(vfile, save_file, width, height, fps, max_frames)
+    video_procces.video_to_ascii(video_file, save_file, width, height, fps, max_frames)
 
 def clean_up():
     deleted = 0
